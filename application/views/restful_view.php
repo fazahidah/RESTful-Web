@@ -12,6 +12,7 @@ curl_close($curl);
 // data berupa json, perlu didecode untuk dapat dimanipulasi
 $data_api = json_decode($res);
 // var_dump($data_api);
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,19 +41,22 @@ $data_api = json_decode($res);
 			<ul class="nav navbar-nav">
 				<li class="angBtn"><a>Nama Anggota</a></li>
 			</ul>
-			<ul class="nav navbar-nav">
-				<span class="glyphicon glyphicon-user" style="color: white; margin-top: 16px;">  Username</span>
-			</ul>
-			<form class="navbar-form navbar-right">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search">
-					<div class="input-group-btn">
-						<button class="btn btn-default" type="submit">
-							<i class="glyphicon glyphicon-search"></i>
-						</button>
+			<ul>
+				<form class="navbar-form navbar-nav">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search">
+						<div class="input-group-btn">
+							<button class="btn btn-default" type="submit">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</div>
 					</div>
-				</div>
-			</form>
+				</form>
+			</ul>
+			<ul class="nav navbar-nav" method="post" action="<?=site_url('auth/login')?>" style="color: white; margin-top: 8px;">
+			<?=$_SESSION["username"]?>
+				<span class="glyphicon glyphicon-user"> Username</span>
+			</ul>
 		</div>
 	</nav>
 	<br>
@@ -72,9 +76,10 @@ $data_api = json_decode($res);
 				<input type="text" class="tambahHarga" name="tambahHarga" id="" value=""></input>
 				<button type="submit" class="btn btn-primary">Tambah Barang</button>
 			</div>
-			</form>
+		</form>
 	</div>
 	</div>
+	<span method="post" action="<?=site_url('auth/login')?>"><?=$_SESSION["username"]?></span>
 
 	<table class="table table-striped">
 		<thead>

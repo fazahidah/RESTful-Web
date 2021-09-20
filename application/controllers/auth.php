@@ -56,13 +56,14 @@ class Auth extends CI_Controller {
     function login()
     {
         $p = $this->input->post();
-        $table = "user";
-        $auth = $db->select("SELECT * FROM user WHERE username = '". mysqli_real_escape_string($db->koneksi,$username)."'");
-        if (count($auth) > 0) {
-            $password = md5($p['password']) == $auth[0]['password'];
+        $auth = $this->db->select('username,password,nama')->from('user')->where('username',$p['username'])->get();
+        $authResult =$auth->result();
+        $countAuth = $auth->num_rows();
+        if ($countAuth > 0) {
+            $password = md5($p['password']) == $authResult[0]->password;
             if ($password) {
-                $_SESSION["username"] = $username;
-                $_SESSION["nama"] = $auth[0]['nama'];
+                $_SESSION["username"] = $authResult[0]->username;
+                $_SESSION["nama"] = $authResult[0]->nama;
                 redirect("restful");
             }
             else {
