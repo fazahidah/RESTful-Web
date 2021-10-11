@@ -21,6 +21,7 @@ session_start();
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>REST Client</title>
+	<link rel="icon" href="https://i.ibb.co/bKPgBJd/icon.png" type="image" >
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<!-- jQuery library -->
@@ -33,6 +34,7 @@ session_start();
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
+				<!-- <a><img src="https://i.ibb.co/bKPgBJd/icon.png" alt="icon" width="50px"></a> -->
 				<a class="navbar-brand" href="#">Peripheral Computer</a>
 			</div>
 			<ul class="nav navbar-nav">
@@ -53,10 +55,12 @@ session_start();
 					</div>
 				</form>
 			</ul>
-			<ul class="nav navbar-nav" method="post" action="<?=site_url('auth/login')?>" style="color: white; margin-top: 8px;">
-			<?=$_SESSION["username"]?>
-				<span class="glyphicon glyphicon-user"> Username</span>
+			<ul class="navbar-form navbar-right dropdown" style="margin-top:0px;">
+				<button class="btn btn-secondary dropdown" type="button" onclick="location.href='<?=site_url('auth')?>'">
+				<span class="glyphicon glyphicon-user"></span> Log Out
 			</ul>
+			</ul>
+			
 		</div>
 	</nav>
 	<br>
@@ -79,8 +83,8 @@ session_start();
 		</form>
 	</div>
 	</div>
-	<span method="post" action="<?=site_url('auth/login')?>"><?=$_SESSION["username"]?></span>
 
+	<!-- Table Data -->
 	<table class="table table-striped">
 		<thead>
 			<tr>
